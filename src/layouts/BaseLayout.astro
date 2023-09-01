@@ -1,4 +1,6 @@
 ---
+import { useSanityClient } from '@sanity/astro';
+const posts = await useSanityClient().fetch(`*[_type == "post"]`);
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -17,6 +19,8 @@ const { pageTitle } = Astro.props;
 		<Header />
 		<h1>{ pageTitle }</h1>
 		<slot />
+		{  
+		posts && (    <ul> {posts.map((post) => ( <li> <a href={`post/${post.slug?.current}`}>{post.title}</a> </li> ))} </ul> ) }	
         <Footer />
 		<script>
 			import "../scripts/menu.js";
