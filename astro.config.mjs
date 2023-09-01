@@ -1,8 +1,11 @@
 import { defineConfig } from 'astro/config';
+import sanity from "@sanity/astro";
 
-import preact from "@astrojs/preact";
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [preact()]
+  integrations: [sanity({
+    projectId: '104tbncl',
+    dataset: 'canals',
+    apiVersion: '2023-02-08',
+    useCdn: false,
+  })]
 });
